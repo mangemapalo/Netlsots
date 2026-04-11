@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netslots · About Us</title>
+    <!-- Bebas Neue + Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            padding: 2.5rem 1.5rem;
+            position: relative;
+        }
+
+        /* Red ambient lighting */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(200, 0, 0, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(180, 0, 20, 0.04) 0%, transparent 45%),
+                radial-gradient(circle at 40% 80%, rgba(220, 20, 40, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .about-page {
+            position: relative;
+            z-index: 2;
+            max-width: 950px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.2rem;
+        }
+
+        /* Logo image wrapper with red lighting */
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            filter: drop-shadow(0 0 12px rgba(200, 20, 30, 0.35));
+            transition: filter 0.4s ease;
+            animation: redPulse 3.5s infinite ease-in-out;
+        }
+
+        .image-wrapper:hover {
+            filter: drop-shadow(0 0 25px rgba(255, 30, 50, 0.7)) drop-shadow(0 0 8px #ff2020);
+            animation: none;
+        }
+
+        @keyframes redPulse {
+            0% { filter: drop-shadow(0 0 8px rgba(200, 0, 20, 0.3)) drop-shadow(0 0 3px #ff4040); }
+            50% { filter: drop-shadow(0 0 20px rgba(230, 20, 40, 0.6)) drop-shadow(0 0 8px #ff6060); }
+            100% { filter: drop-shadow(0 0 8px rgba(200, 0, 20, 0.3)) drop-shadow(0 0 3px #ff4040); }
+        }
+
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border: 2px solid rgba(210, 30, 50, 0.25);
+            border-radius: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s;
+            box-shadow: 0 0 20px #c01020;
+        }
+
+        .image-wrapper:hover::after {
+            opacity: 0.9;
+        }
+
+        .brand-image {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            aspect-ratio: 500 / 281;
+            border-radius: 0;
+            border: 1px solid rgba(200, 30, 40, 0.2);
+            box-shadow: 0 0 0 1px rgba(180, 0, 20, 0.15), 0 15px 35px -10px #000000;
+            transition: border 0.25s, box-shadow 0.3s;
+        }
+
+        .brand-image:hover {
+            border-color: #c41e3a;
+            box-shadow: 0 0 0 2px rgba(220, 30, 50, 0.3), 0 20px 40px -8px #2a0000;
+        }
+
+        /* About card */
+        .about-card {
+            background: linear-gradient(145deg, #0a0a0a 0%, #050505 100%);
+            border: 1px solid rgba(200, 30, 40, 0.35);
+            border-radius: 24px;
+            padding: 2.5rem 2.8rem;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(180, 0, 20, 0.15), 0 0 30px rgba(200, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Red accent line at top */
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #cc1111, #ff3333, #ff5555, #ff3333, #cc1111);
+            opacity: 0.9;
+        }
+
+        /* Page title */
+        .about-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.2rem;
+            letter-spacing: 6px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 1.8rem;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(200, 0, 0, 0.4);
+        }
+
+        .about-title span {
+            color: #cc1111;
+        }
+
+        /* Tagline */
+        .tagline {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tagline p {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            color: #ff4444;
+            text-transform: uppercase;
+        }
+
+        /* Description text */
+        .description {
+            color: #e0e0e0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+        }
+
+        .description p {
+            margin-bottom: 1.2rem;
+        }
+
+        .description strong {
+            color: #ff6666;
+            font-weight: 600;
+        }
+
+        /* What we offer section */
+        .section-heading {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: #ff4444;
+            text-transform: uppercase;
+            margin: 1.8rem 0 1rem 0;
+            border-bottom: 1px solid rgba(204, 17, 17, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .offer-item {
+            background: rgba(204, 17, 17, 0.05);
+            border: 1px solid rgba(204, 17, 17, 0.15);
+            border-radius: 12px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .offer-item:hover {
+            background: rgba(204, 17, 17, 0.1);
+            border-color: #cc1111;
+            transform: translateY(-3px);
+        }
+
+        .offer-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+        }
+
+        .offer-desc {
+            color: #aaaaaa;
+            font-size: 0.85rem;
+        }
+
+        /* Why choose us */
+        .why-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .why-list li {
+            color: #e0e0e0;
+            font-size: 1rem;
+            line-height: 1.7;
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .why-list li:last-child {
+            border-bottom: none;
+        }
+
+        .why-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0.3rem;
+            color: #cc1111;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Contact section */
+        .contact-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(204, 17, 17, 0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .contact-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            color: #888888;
+        }
+
+        .contact-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ff6666;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .contact-value:hover {
+            color: #ff3333;
+            text-shadow: 0 0 8px #ff0000;
+        }
+
+        .social-handle {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            color: #ffffff;
+        }
+
+        .social-handle i {
+            color: #cc1111;
+            margin-right: 0.3rem;
+        }
+
+        /* Navigation */
+        .nav-back {
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .back-link {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: #cc1111;
+            text-decoration: none;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .back-link:hover {
+            color: #ff4444;
+            text-shadow: 0 0 10px #ff0000;
+            letter-spacing: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .about-card {
+                padding: 1.8rem 1.5rem;
+            }
+            .about-title {
+                font-size: 2.4rem;
+                letter-spacing: 4px;
+            }
+            .tagline p {
+                font-size: 1.3rem;
+            }
+            .description {
+                font-size: 0.95rem;
+            }
+            .brand-image {
+                max-width: 300px;
+            }
+            .offer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Decorative red line */
+        .about-page::after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #cc1111, #ff4444, #cc1111, transparent);
+            margin-top: 0.5rem;
+            filter: blur(1.5px);
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="about-page">
+        <!-- Logo image with red lighting -->
+        <div class="image-wrapper">
+            <img 
+                src="image.png" 
+                alt="Netslots" 
+                class="brand-image"
+                width="500" 
+                height="281"
+            >
+        </div>
+
+        <!-- About card -->
+        <div class="about-card">
+            <h1 class="about-title">
+                <span>//</span> About Netslots <span>//</span>
+            </h1>
+
+            <div class="tagline">
+                <p>Premium Netflix · Affordable Price</p>
+            </div>
+
+            <div class="description">
+                <p>
+                    <strong>Netslots</strong> is a simple, straight-forward Netflix subscription sharing service 
+                    based in Zambia. We purchase premium Netflix accounts and offer affordable monthly slots 
+                    to customers who want unlimited streaming without the full premium price tag.
+                </p>
+                <p>
+                    Think of it like splitting a family plan — but we handle everything. You pay a small 
+                    monthly fee, get your own profile on a premium account, and start watching immediately. 
+                    No contracts, no hidden fees, just Netflix at a fraction of the cost.
+                </p>
+            </div>
+
+            <!-- What we offer -->
+            <div class="section-heading">— What We Offer —</div>
+            <div class="offer-grid">
+                <div class="offer-item">
+                    <div class="offer-icon">🎬</div>
+                    <div class="offer-title">Premium Netflix</div>
+                    <div class="offer-desc">4K Ultra HD · Multiple Profiles</div>
+                </div>
+                <div class="offer-item">
+                    <div class="offer-icon">💰</div>
+                    <div class="offer-title">Affordable Plans</div>
+                    <div class="offer-desc">From K30 to K100 monthly</div>
+                </div>
+                <div class="offer-item">
+                    <div class="offer-icon">⚡</div>
+                    <div class="offer-title">Instant Access</div>
+                    <div class="offer-desc">Start watching same day</div>
+                </div>
+                <div class="offer-item">
+                    <div class="offer-icon">🔒</div>
+                    <div class="offer-title">Private Profile</div>
+                    <div class="offer-desc">Your own space · No interference</div>
+                </div>
+            </div>
+
+            <!-- Why choose Netslots -->
+            <div class="section-heading">— Why Choose Netslots —</div>
+            <ul class="why-list">
+                <li><strong style="color: #ff6666;">Massive Savings</strong> — Get premium Netflix for less than the price of a meal.</li>
+                <li><strong style="color: #ff6666;">No Long-Term Commitment</strong> — Pay monthly, cancel anytime.</li>
+                <li><strong style="color: #ff6666;">Zambian-Based Support</strong> — We're local. Quick responses on WhatsApp.</li>
+                <li><strong style="color: #ff6666;">Simple Process</strong> — Choose a plan, pay, get your profile, start watching.</li>
+                <li><strong style="color: #ff6666;">Trusted Service</strong> — Many happy customers across Zambia.</li>
+            </ul>
+
+            <!-- How it works -->
+            <div class="section-heading">— How It Works —</div>
+            <div class="description" style="margin-bottom: 0;">
+                <p>
+                    1. <strong>Pick a plan</strong> — Choose from K30 to K100 depending on your needs.<br>
+                    2. <strong>Make payment</strong> — Via mobile money or bank transfer.<br>
+                    3. <strong>Receive credentials</strong> — We send your login details via WhatsApp or email.<br>
+                    4. <strong>Start streaming</strong> — Log in to your assigned profile and enjoy!
+                </p>
+            </div>
+
+            <!-- Contact section -->
+            <div class="contact-section">
+                <div class="contact-info">
+                    <span class="contact-label">WhatsApp / Calls</span>
+                    <a href="tel:+260967602518" class="contact-value">+260 96 7602518</a>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:netslots001@gmail.com" class="contact-value">netslots001@gmail.com</a>
+                </div>
+                <div class="social-handle">
+                    <i>@</i>NETSLOTS
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to home link -->
+        <div class="nav-back">
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            console.log('🎬 Netslots — Premium Netflix sharing. Affordable. Simple. Zambian.');
+            
+            // Subtle hover effect logging (optional)
+            const offerItems = document.querySelectorAll('.offer-item');
+            offerItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Just a subtle feedback
+                    this.style.transition = 'all 0.15s';
+                    this.style.backgroundColor = 'rgba(204, 17, 17, 0.15)';
+                    setTimeout(() => {
+                        this.style.backgroundColor = '';
+                    }, 150);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
