@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netslots · Pricing</title>
+    <!-- Bebas Neue + Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        /* Red ambient lighting */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 25%, rgba(200, 0, 0, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(180, 0, 20, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(220, 20, 40, 0.04) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .pricing-page {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        /* Logo image wrapper with red lighting */
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            filter: drop-shadow(0 0 12px rgba(200, 20, 30, 0.35));
+            transition: filter 0.4s ease;
+            animation: redPulse 3.5s infinite ease-in-out;
+        }
+
+        .image-wrapper:hover {
+            filter: drop-shadow(0 0 25px rgba(255, 30, 50, 0.7)) drop-shadow(0 0 8px #ff2020);
+            animation: none;
+        }
+
+        @keyframes redPulse {
+            0% { filter: drop-shadow(0 0 8px rgba(200, 0, 20, 0.3)) drop-shadow(0 0 3px #ff4040); }
+            50% { filter: drop-shadow(0 0 20px rgba(230, 20, 40, 0.6)) drop-shadow(0 0 8px #ff6060); }
+            100% { filter: drop-shadow(0 0 8px rgba(200, 0, 20, 0.3)) drop-shadow(0 0 3px #ff4040); }
+        }
+
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border: 2px solid rgba(210, 30, 50, 0.25);
+            border-radius: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s;
+            box-shadow: 0 0 20px #c01020;
+        }
+
+        .image-wrapper:hover::after {
+            opacity: 0.9;
+        }
+
+        .brand-image {
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            aspect-ratio: 500 / 281;
+            border-radius: 0;
+            border: 1px solid rgba(200, 30, 40, 0.2);
+            box-shadow: 0 0 0 1px rgba(180, 0, 20, 0.15), 0 15px 35px -10px #000000;
+            transition: border 0.25s, box-shadow 0.3s;
+        }
+
+        .brand-image:hover {
+            border-color: #c41e3a;
+            box-shadow: 0 0 0 2px rgba(220, 30, 50, 0.3), 0 20px 40px -8px #2a0000;
+        }
+
+        /* Page title */
+        .page-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(200, 0, 0, 0.5);
+        }
+
+        /* Pricing grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            width: 100%;
+        }
+
+        /* Plan card */
+        .plan-card {
+            background: linear-gradient(145deg, #0a0a0a 0%, #030303 100%);
+            border: 1px solid rgba(200, 30, 40, 0.3);
+            border-radius: 16px;
+            padding: 1.8rem 1.5rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(180, 0, 20, 0.1);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-6px);
+            border-color: #cc1111;
+            box-shadow: 0 15px 30px rgba(200, 0, 0, 0.2), 0 0 0 2px rgba(220, 30, 50, 0.4), 0 0 25px rgba(255, 0, 0, 0.15);
+        }
+
+        /* Red accent line at top of card */
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #cc1111, #ff3333, #cc1111);
+            opacity: 0.7;
+        }
+
+        /* Plan name */
+        .plan-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 3px;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        /* Kids special badge */
+        .kids-badge {
+            display: inline-block;
+            background: #cc1111;
+            color: #ffffff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* Plan features */
+        .plan-features {
+            list-style: none;
+            margin: 1.2rem 0 1.5rem;
+            flex: 1;
+        }
+
+        .plan-features li {
+            color: #cccccc;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: #cc1111;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Price / monthly display */
+        .plan-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: #ff4444;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Selection buttons container */
+        .selection-buttons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        /* WhatsApp & Email buttons */
+        .contact-btn {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 0.7rem 1.2rem;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+            min-width: 100px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: #000000;
+            box-shadow: 0 4px 0 #128C7E, 0 0 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            background: #2aE376;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #128C7E, 0 0 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #128C7E, 0 0 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .email-btn {
+            background: #cc1111;
+            color: #ffffff;
+            box-shadow: 0 4px 0 #7a0a0a, 0 0 15px rgba(204, 17, 17, 0.3);
+        }
+
+        .email-btn:hover {
+            background: #e01515;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #7a0a0a, 0 0 25px rgba(204, 17, 17, 0.5);
+        }
+
+        .email-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #7a0a0a, 0 0 20px rgba(204, 17, 17, 0.4);
+        }
+
+        /* Monthly range banner */
+        .monthly-banner {
+            margin-top: 0.5rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .monthly-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            color: #ffffff;
+            background: linear-gradient(90deg, transparent, rgba(204, 17, 17, 0.3), transparent);
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .monthly-text span {
+            color: #ff3333;
+        }
+
+        /* Navigation back link */
+        .nav-back {
+            margin-top: 1rem;
+        }
+
+        .back-link {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: #cc1111;
+            text-decoration: none;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        .back-link:hover {
+            color: #ff4444;
+            text-shadow: 0 0 10px #ff0000;
+            letter-spacing: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .page-title {
+                font-size: 2.5rem;
+                letter-spacing: 5px;
+            }
+            .plan-name {
+                font-size: 2.2rem;
+            }
+            .brand-image {
+                max-width: 300px;
+            }
+        }
+
+        /* Decorative red line */
+        .pricing-page::after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #cc1111, #ff4444, #cc1111, transparent);
+            margin-top: 0.5rem;
+            filter: blur(1.5px);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-page">
+        <!-- Logo image with red lighting -->
+        <div class="image-wrapper">
+            <img 
+                src="image.png" 
+                alt="Netslots" 
+                class="brand-image"
+                width="500" 
+                height="281"
+            >
+        </div>
+
+        <!-- Page title -->
+        <h1 class="page-title">Select Your Plan</h1>
+
+        <!-- Pricing plans grid -->
+        <div class="pricing-grid">
+            <!-- K30 Plan -->
+            <div class="plan-card">
+                <div class="plan-name">K30</div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">_</span> 1 Device</li>
+                    <li><span class="feature-icon">_</span> 0 Downloads</li>
+                    <li><span class="feature-icon">_</span> 24 hrs</li>
+                </ul>
+                <div class="selection-buttons">
+                    <button class="contact-btn whatsapp-btn" data-plan="K30" data-type="whatsapp">WhatsApp</button>
+                    <button class="contact-btn email-btn" data-plan="K30" data-type="email">Email</button>
+                </div>
+            </div>
+
+            <!-- K40 Kids Plan -->
+            <div class="plan-card">
+                <div class="plan-name">
+                    K40 
+                    <span class="kids-badge">KIDS</span>
+                </div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">_</span> 1 Device</li>
+                    <li><span class="feature-icon">_</span> 0 Download</li>
+                </ul>
+                <div class="selection-buttons">
+                    <button class="contact-btn whatsapp-btn" data-plan="K40 Kids" data-type="whatsapp">WhatsApp</button>
+                    <button class="contact-btn email-btn" data-plan="K40 Kids" data-type="email">Email</button>
+                </div>
+            </div>
+
+            <!-- K50 Plan -->
+            <div class="plan-card">
+                <div class="plan-name">K50</div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">_</span> 1 Device</li>
+                    <li><span class="feature-icon">_</span> 0 Downloads</li>
+                </ul>
+                <div class="selection-buttons">
+                    <button class="contact-btn whatsapp-btn" data-plan="K50" data-type="whatsapp">WhatsApp</button>
+                    <button class="contact-btn email-btn" data-plan="K50" data-type="email">Email</button>
+                </div>
+            </div>
+
+            <!-- K60 Plan -->
+            <div class="plan-card">
+                <div class="plan-name">K60</div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">_</span> 1 Device</li>
+                    <li><span class="feature-icon">_</span> 1 Download</li>
+                </ul>
+                <div class="selection-buttons">
+                    <button class="contact-btn whatsapp-btn" data-plan="K60" data-type="whatsapp">WhatsApp</button>
+                    <button class="contact-btn email-btn" data-plan="K60" data-type="email">Email</button>
+                </div>
+            </div>
+
+            <!-- K70 Plan -->
+            <div class="plan-card">
+                <div class="plan-name">K70</div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">_</span> 1 Device</li>
+                    <li><span class="feature-icon">_</span> 2 Downloads</li>
+                </ul>
+                <div class="selection-buttons">
+                    <button class="contact-btn whatsapp-btn" data-plan="K70" data-type="whatsapp">WhatsApp</button>
+                    <button class="contact-btn email-btn" data-plan="K70" data-type="email">Email</button>
+                </div>
+            </div>
+
+            <!-- K100 Plan -->
+            <div class="plan-card">
+                <div class="plan-name">K100</div>
+                <ul class="plan-features">
+                    <li><span class="feature-icon">_</span> 1 Device</li>
+                    <li><span class="feature-icon">_</span> 1 season</li>
+                </ul>
+                <div class="selection-buttons">
+                    <button class="contact-btn whatsapp-btn" data-plan="K100" data-type="whatsapp">WhatsApp</button>
+                    <button class="contact-btn email-btn" data-plan="K100" data-type="email">Email</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly range -->
+        <div class="monthly-banner">
+            <div class="monthly-text">
+                <span>40-100</span> Monthly
+            </div>
+        </div>
+
+        <!-- Back to home link -->
+        <div class="nav-back">
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Contact details
+            const WHATSAPP_NUMBER = '260967602518';  // +260 96 7602518
+            const EMAIL_ADDRESS = 'netslots001@gmail.com';
+            
+            // Get all contact buttons
+            const buttons = document.querySelectorAll('.contact-btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const plan = this.getAttribute('data-plan');
+                    const type = this.getAttribute('data-type');
+                    
+                    // Create message based on plan
+                    const subject = `Netslots Plan Inquiry: ${plan}`;
+                    const body = `Hello Netslots team,%0A%0AI'm interested in the ${plan} plan.%0A%0APlease provide more details about availability and payment options.%0A%0AThank you!`;
+                    
+                    if (type === 'whatsapp') {
+                        // WhatsApp direct link
+                        const whatsappMessage = `Hello Netslots team, I'm interested in the *${plan}* plan. Please provide more details about availability and payment options. Thank you!`;
+                        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+                        window.open(whatsappUrl, '_blank');
+                    } 
+                    else if (type === 'email') {
+                        // Email mailto link
+                        const mailtoUrl = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(subject)}&body=${body}`;
+                        window.location.href = mailtoUrl;
+                    }
+                    
+                    // Add a subtle click feedback (red flash)
+                    const card = this.closest('.plan-card');
+                    card.style.transition = 'all 0.1s';
+                    card.style.boxShadow = '0 0 30px #ff0000, 0 0 0 3px #cc1111';
+                    setTimeout(() => {
+                        card.style.boxShadow = '';
+                    }, 200);
+                });
+            });
+            
+            // Additional: make the monthly banner also clickable for general inquiry
+            const monthlyBanner = document.querySelector('.monthly-banner');
+            if (monthlyBanner) {
+                monthlyBanner.style.cursor = 'pointer';
+                monthlyBanner.addEventListener('click', function() {
+                    const generalMessage = 'Hello Netslots team, I have a question about your monthly plans (40-100 range).';
+                    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(generalMessage)}`;
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
+            
+            console.log('✨ Netslots Pricing — WhatsApp & Email ready. Number: +260 96 7602518 | Email: netslots001@gmail.com');
+        })();
+    </script>
+</body>
+</html>
